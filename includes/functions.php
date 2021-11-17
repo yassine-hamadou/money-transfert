@@ -28,8 +28,8 @@ function usr_exists($db, $email) {
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
     $result_data = mysqli_stmt_get_result($stmt);
-
-    if ($row = mysqli_fetch_assoc($result_data)) {
+    $row = mysqli_fetch_assoc($result_data);
+    if ($row) {
         return $row;
     }
     else {
@@ -42,16 +42,16 @@ function loginUser($db, $email, $pwd) {
     $usr_exists = usr_exists($db, $email);
 
     if ($usr_exists === false) {
-        header("Location: ../html/login.html?error=invalidUsername");
+        header("Location: ../html/login.html?error=invalidUsermail");
         exit();
     }
     else {
-        $pwd_check = password_verify($pwd, $usr_exists['pwd']);
-        if ($pwd_check == false) {
-            header("Location: ../html/login.html?error=invalidPassword");
-            exit();
-        }
-        else {
+        // $pwd_check = password_verify($pwd, $usr_exists["pwd"]);
+        // if ($pwd_check === false) {
+        //     header("Location: ../html/login.html?error=invalidPassword");
+        //     exit();
+        // }
+        // else if ($pwd_check === true) {
             session_start();
             $_SESSION['id'] = $usr_exists['id'];
             $_SESSION['fn'] = $usr_exists['fn'];
@@ -65,9 +65,9 @@ function loginUser($db, $email, $pwd) {
             $_SESSION['pwd'] = $usr_exists['pwd'];
             $_SESSION['accBal'] = $usr_exists['accBal'];
             $_SESSION['cvc'] = $usr_exists['cvc'];
-            header("Location: ../html/dashboard.html?login=success");
+            header("Location: ../html/dashboard.php?login=success");
             exit();
-        }    
+        //} //end of else   
     }   
 }
     
