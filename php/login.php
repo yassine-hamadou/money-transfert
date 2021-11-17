@@ -1,11 +1,15 @@
 <?php
 session_start();
-require ('../includes/db.php');
+require_once ('../includes/db.php');
+require_once ('../includes/functions.php');
 
 if (isset($_POST['login'])) {
     $log_mail = $_POST['email'];
-    $log_pwd = $_POST['pass'];
-
-    $user_details = mysqli_query($db, "SELECT pwd FROM customer WHERE email='{$log_mail}'");
-    header('location: ../html/dashboard.html');
+    $log_pwd = $_POST['pwd'];
+    
+    loginUser($db, $log_mail, $log_pwd);
+}
+else {
+    header("Location: ../html/login.html?error=invalid");
+    exit();
 }

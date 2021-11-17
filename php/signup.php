@@ -1,6 +1,6 @@
 <?php
-include ("../"); // include database connection   
-include './includes/functions.php';  // include functions 
+include '../includes/db.php'; // include db connection
+include '../includes/functions.php';  // include functions 
 
 
 session_start();
@@ -27,7 +27,7 @@ if (isset($_POST["signup"])) {
 
     //making sure user does not register twice
     if (usr_exists($db, $email)) {
-        header("Location ../html/login.html?error=emailExists");
+        header("Location: ../html/signup.html?error=user_exists");
         exit();
     }
     create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $hash_pwd, $accBal, $cvc);
