@@ -1,14 +1,27 @@
 <?php
-
-function create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $pwd) {
-
-}
-
-function user_exits($db, $email) {
-    $query = "SELECT * FROM customer WHERE email = ?;";
+function create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $pwd, $accBal, $cvc) {
+    $query = "INSERT INTO customer (fn, ln, eml, ph, dob, adr, nat, stt, pwd, accBal, cvc) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($db);
     if (!mysqli_stmt_prepare($stmt, $query)) {
-        header("Location: ../html/login.html");
+        header("Location: ../html/signup.html?error=stmtfailed1");
+        exit();
+    }
+
+    $hash_pwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+
+    mysqli_stmt_bind_param($stmt, 'ssssssssssi', $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $hash_pwd, $accBal, $cvc);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("Location: ../html/signup.html?error=none");
+    exit();
+}
+
+function usr_exists($db, $email) {
+    $query = "SELECT * FROM customer WHERE eml = ?;";
+    $stmt = mysqli_stmt_init($db);
+    if (!mysqli_stmt_prepare($stmt, $query)) {
+        header("Location: ../html/signup.html?error=stmtfailed2");
         exit();
     }
 
@@ -34,6 +47,7 @@ function checkLogin($id)
         header("location:adminlogin.php?msg=$msg");
     }
 }
+
 function delete($table, $field)
 {
     if(isset($_GET['id']) && !empty($_GET['id'])){
