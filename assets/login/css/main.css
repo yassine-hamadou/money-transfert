@@ -240,15 +240,10 @@ iframe {
 .container-login100 {
     width: 100%;
     min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    padding: 15px;
+    padding: 15%;
     background: #0000ff;
     background: -webkit-linear-gradient(-135deg, #c850c0, #0000ff);
     background: -o-linear-gradient(-135deg, #c850c0, #0000ff);
