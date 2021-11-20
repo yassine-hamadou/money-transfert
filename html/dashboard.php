@@ -13,7 +13,26 @@
 
     <div class="container-fluid">
         <div class="row">
-            <?php include '../includes/dashnav.php';?>
+            <?php 
+              include '../includes/dashnav.php';
+              //fecth data from database
+              include '../includes/db.php';
+              $sql = "SELECT * FROM customer WHERE id = '".$_SESSION['id']."'";
+              $result = mysqli_query($db, $sql);
+              $row = mysqli_fetch_assoc($result);
+              $_SESSION['id'] = $row['id'];
+              $_SESSION['fn'] = $row['fn'];
+              $_SESSION['ln'] = $row['ln'];
+              $_SESSION['eml'] = $row['eml'];
+              $_SESSION['ph'] = $row['ph'];
+              $_SESSION['dob'] = $row['dob'];
+              $_SESSION['adr'] = $row['adr'];
+              $_SESSION['nat'] = $row['nat'];
+              $_SESSION['stt'] = $row['stt'];
+              $_SESSION['pwd'] = $row['pwd'];
+              $_SESSION['accBal'] = $row['accBal'];
+              $_SESSION['cvc'] = $row['cvc'];
+            ?>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div

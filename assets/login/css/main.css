@@ -243,6 +243,7 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     padding: 15%;
     background: #0000ff;
     background: -webkit-linear-gradient(-135deg, #c850c0, #0000ff);

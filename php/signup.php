@@ -30,7 +30,7 @@ if (isset($_POST["signup"])) {
         header("Location: ../html/signup.html?error=user_exists");
         exit();
     }
-    create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $hash_pwd, $accBal, $cvc);
+    create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $pwd, $accBal, $cvc);
 }
 
 else {

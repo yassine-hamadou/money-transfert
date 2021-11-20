@@ -8,8 +8,6 @@ function create_user($db, $fn, $ln, $email, $phone, $dob, $address, $nationality
     }
 
     $hash_pwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-
     mysqli_stmt_bind_param($stmt, 'ssssssssssi', $fn, $ln, $email, $phone, $dob, $address, $nationality, $state, $hash_pwd, $accBal, $cvc);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
@@ -46,12 +44,12 @@ function loginUser($db, $email, $pwd) {
         exit();
     }
     else {
-        // $pwd_check = password_verify($pwd, $usr_exists["pwd"]);
-        // if ($pwd_check === false) {
-        //     header("Location: ../html/login.html?error=invalidPassword");
-        //     exit();
-        // }
-        // else if ($pwd_check === true) {
+        $pwd_check = password_verify($pwd, $usr_exists["pwd"]);
+        if ($pwd_check === false) {
+            header("Location: ../html/login.html?error=invalidPassword");
+            exit();
+        }
+        else if ($pwd_check === true) {
             session_start();
             $_SESSION['id'] = $usr_exists['id'];
             $_SESSION['fn'] = $usr_exists['fn'];
@@ -67,7 +65,7 @@ function loginUser($db, $email, $pwd) {
             $_SESSION['cvc'] = $usr_exists['cvc'];
             header("Location: ../html/dashboard.php?login=success");
             exit();
-        //} //end of else   
+        }
     }   
 }
     
