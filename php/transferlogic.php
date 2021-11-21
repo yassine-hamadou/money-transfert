@@ -7,7 +7,6 @@ require_once ('../includes/functions.php');
 if (isset($_POST["send"])) {
     $receiver_acc = $_POST["accNum"];
     $amount_sending = $_POST["amnt"];
-
     $senderFn = $_SESSION["fn"];
     $senderLn = $_SESSION["ln"];
     $sender_acc = $_SESSION["id"];
@@ -56,15 +55,15 @@ if (isset($_POST["send"])) {
             if (!$result) {
                 mysqli_rollback($db);
             }
-            mysqli_commit($db);
 
             // inserting into transaction table
-            $sql = "INSERT INTO transaction (sender_id, receiver_id, amount) VALUES ('$sender_acc', '$receiver_id', '$amount_sending')";
+            $date_sent = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO transactions (Sender, Receiver, Amount, Dayd) VALUES ('$sender_acc', '$receiver_acc', '$amount_sending', '$date_sent')";
             $result = mysqli_query($db, $sql);
             if (!$result) {
                 mysqli_rollback($db);
             }
-
+            mysqli_commit($db);
 
             $_SESSION["accBal"] = $sender_bal;
             $_SESSION["success_msg"] = "You have successfully sent $amount_sending to $receiverFn $receiverLn";

@@ -51,6 +51,7 @@ function loginUser($db, $email, $pwd) {
         }
         else if ($pwd_check === true) {
             session_start();
+            $_SESSION['Logged'] = true;
             $_SESSION['id'] = $usr_exists['id'];
             $_SESSION['fn'] = $usr_exists['fn'];
             $_SESSION['ln'] = $usr_exists['ln'];

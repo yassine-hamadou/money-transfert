@@ -1,5 +1,8 @@
 <?php 
   session_start();
+  if ($_SESSION['Logged'] === false) {
+    header("Location: ../php/login.php");
+  }
 ?>
 
 <!doctype html>
