@@ -1,11 +1,10 @@
-<nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
+<nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu" style="top: 0px;">
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-
-        <?php
-            // Get the current page name and use it to set the active class 
-            $activePage = basename($_SERVER['PHP_SELF'], ".php");
-        ?>
+            <?php
+                // Get the current page name and use it to set the active class 
+                $activePage = basename($_SERVER['PHP_SELF'], ".php");
+            ?>
         
             <li class="nav-item">
                 <a aria-current="page" class="nav-link <?= ($activePage == 'dashboard') ? 'active':'';?>" href="../html/dashboard.php">
@@ -51,6 +50,13 @@
                     <span data-feather="layers"></span> Change Password
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../php/logout.php">
+                    <span data-feather="log-out"></span> Logout
+                </a>
+            </li>
+
+            
         </ul>
 
     </div>

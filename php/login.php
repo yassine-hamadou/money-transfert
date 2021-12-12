@@ -9,6 +9,6 @@ if (isset($_POST['login'])) {
     loginUser($db, $email, $pwd);
 }
 else {
-    header("Location: ../html/login.html?error=invalid");
+    header("Location: ../html/loginpage.php?error=invalid");
     exit();
 }
