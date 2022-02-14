@@ -202,14 +202,26 @@
                             <!-- small card -->
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>1.2<sup style="font-size: 20px">%</sup></h3>
+                                    <?php
+                                        //get transaction fee
+                                        $query = "SELECT trans_fee FROM admins";
+                                        $result = mysqli_query($db, $query);
+                                        if ($result) {
+                                            $row = mysqli_fetch_assoc($result);
+                                            $trans_fee = $row['trans_fee'];                                            
+                                        }
+                                        else {
+                                            die();
+                                        }
+                                    ?>
+                                    <h3><?php echo $trans_fee;?><sup style="font-size: 20px">%</sup></h3>
 
                                     <p>Transaction fee</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
+                                <a href="./transFee.php" class="small-box-footer">
                                     Edit <i class="fas fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -430,8 +442,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2021 <a href="/index.html">BornaSend</a>.</strong>
-            All rights reserved.
+            <strong>2021 <a href="/index.html">BornaSend</a>.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
             </div>

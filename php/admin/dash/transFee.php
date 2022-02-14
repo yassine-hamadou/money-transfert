@@ -68,24 +68,7 @@
                 </div>
 
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Widgets
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
+                
             <!-- /.sidebar -->
         </aside>
 
@@ -113,39 +96,32 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="container" style="max-width: 400px;">
-                        <h3 class="wrapper">Agent sign up form</h3>
+                        <h3 class="wrapper">Set transaction fees</h3>
                         <?php
-                            if ((isset($_GET["agent"])) && ($_GET["agent"]) === "notadded") {
-                                echo '<div class="alert alert-danger">Agent not added</div>';
+                            if ((isset($_GET["trans"])) && ($_GET["trans"]) === "notChanged") {
+                                echo '<div class="alert alert-danger">Transaction fees not changed</div>';
                             }
-                            elseif ((isset($_GET["agent"])) && ($_GET["agent"]) === "added") {
-                                echo '<div class="alert alert-success">Agent added</div>';
+                            elseif ((isset($_GET["trans"])) && ($_GET["trans"]) === "changed") {
+                                echo '<div class="alert alert-success">Transaction fees changed successfully</div>';
+                            }
+                            elseif ((isset($_GET["trans"])) && ($_GET["trans"]) === "notMatched") {
+                                echo '<div class="alert alert-danger">Transaction fees do not correspond</div>';
+                            }
+                            elseif ((isset($_GET["trans"])) && ($_GET["trans"]) === "error") {
+                                echo '<div class="alert alert-danger">Error</div>';
                             }
                         ?>
-                        <form action="./adminlogic/agentsign.php" method="post">
+                        <form action="./adminlogic/transFeeLogic.php" method="post">
                             <div class="mb-3">
-                                <label class="form-label" for="fname">First Name</label>
-                                <input class="form-control" id="fname" name="fname" required type="text">
+                                <label class="form-label" for="agId">Set transaction fees</label>
+                                <input class="form-control" id="agId" name="setFee" required type="number">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="lname">Last Name</label>
-                                <input class="form-control" id="lname" name="lname" required type="text">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="email">Email</label>
-                                <input class="form-control" id="email" name="email" required type="email">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="pwd">Password</label>
-                                <input class="form-control" id="pwd" name="pwd" required type="password">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="psp">Passport Number</label>
-                                <input class="form-control" id="psp" name="psp" required type="text">
+                                <label class="form-label" for="ragId">Confirm transaction fee</label>
+                                <input class="form-control" id="ragId" name="conFee" required type="number">
                             </div>
 
-                            <button class="btn btn-primary blue mb-5" name="submit" type="submit" value="Submit">Sign Up
-                                Agent</button>
+                            <button class="btn btn-primary blue mb-5" name="fee" type="submit" value="Submit">Change transaction fees</button>
                         </form>
                     </div>
                 </div>

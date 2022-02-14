@@ -4,7 +4,8 @@ include '/opt/lampp/htdocs/money-transfert/includes/functions.php';
 
 
 //get all pending withdrawal requests
-$sql = "SELECT d1.acc_num, d1.w_amount, d1.fn, d1.ln, d1.wstatus, d1.date_withdrawn FROM withdrawals d1 WHERE d1.date_withdrawn = (SELECT max(d2.date_withdrawn) FROM withdrawals d2 WHERE d1.acc_num = d2.acc_num) ORDER BY date_withdrawn DESC;";
+// $sql = "SELECT d1.acc_num, d1.w_amount, d1.fn, d1.ln, d1.wstatus, d1.date_withdrawn FROM withdrawals d1 WHERE d1.date_withdrawn = (SELECT max(d2.date_withdrawn) FROM withdrawals d2 WHERE d1.acc_num = d2.acc_num AND wstatus = 'Pending') ORDER BY date_withdrawn DESC;";
+$sql ="SELECT d1.acc_num, d1.w_amount, d1.fn, d1.ln, d1.wstatus, d1.date_withdrawn FROM withdrawals d1 WHERE wstatus = 'Pending' ORDER BY date_withdrawn DESC;";
 $result = mysqli_query($db, $sql);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0) 

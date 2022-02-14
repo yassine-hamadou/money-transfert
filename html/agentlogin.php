@@ -3,6 +3,18 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMVDJPFWV4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YMVDJPFWV4');
+    </script>
     <title> AgentLogin</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -37,7 +49,14 @@
                     <span class="login100-form-title">
 						Agent Login
 					</span>
-
+                    <?php
+                        if ((isset($_GET["error"])) && ($_GET["error"]) === "invalidUsermail") {
+                            echo '<div class="alert alert-danger">Invalid Usermail</div>';
+                        }
+                        elseif ((isset($_GET["error"])) && ($_GET["error"]) === "invalidPassword") {
+                            echo '<div class="alert alert-danger">Invalid Password</div>';
+                        }
+                    ?>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" name="email" placeholder="Email" required type="text">
                         <span class="focus-input100"></span>

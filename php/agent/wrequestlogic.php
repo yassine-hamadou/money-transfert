@@ -5,15 +5,15 @@ include '/opt/lampp/htdocs/money-transfert/includes/db.php';
 include '/opt/lampp/htdocs/money-transfert/includes/functions.php';
 
 if (isset($_POST['withdraw'])) {
-    $given_token = $_POST['token'];
+    $tkn_prvdd_by_usr = $_POST['token'];
     $givenAccNum = $_POST['accNum'];
 
     $query = "SELECT * FROM withdrawals WHERE acc_num = '$givenAccNum' AND wstatus = 'Pending' ORDER BY date_withdrawn DESC LIMIT 1";
     $result = mysqli_query($db, $query);
     $row = mysqli_fetch_assoc($result);
-    $token = $row['token'];
+    $tkn_gnrtd_frm_wthdrwl_rqst = $row['token'];
     $wAmount = $row['w_amount'];
-    if ($given_token == $token) 
+    if ($tkn_prvdd_by_usr == $tkn_gnrtd_frm_wthdrwl_rqst) 
     {
         $getBalance = "SELECT * FROM customer WHERE id = '$givenAccNum'";
         $getBalResult = mysqli_query($db, $getBalance);
@@ -39,7 +39,7 @@ if (isset($_POST['withdraw'])) {
             $sql = "INSERT INTO transactions (Sender, Receiver, Amount, Dayd) VALUES ('$agent_id', '$givenAccNum', '$wAmount', '$date_sent')";
             $result = mysqli_query($db, $sql);
 
-            $query = "UPDATE withdrawals SET wstatus = 'approved' WHERE acc_num = '$givenAccNum' AND wstatus = 'Pending'";
+            $query = "UPDATE withdrawals SET wstatus = 'Approved' WHERE acc_num = '$givenAccNum' AND wstatus = 'Pending'";
             $result = mysqli_query($db, $query);
             if ($result !== true) 
             {
@@ -50,7 +50,7 @@ if (isset($_POST['withdraw'])) {
             
             echo "<script>alert('Withdrawal request approved successfully')</script>";
             echo "<script>window.open('./wRequest.php', '_self')</script>";
-        
+            
         } 
     } 
     else 

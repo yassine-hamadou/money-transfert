@@ -3,6 +3,18 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMVDJPFWV4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YMVDJPFWV4');
+    </script>
     <title>Login</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -23,21 +35,28 @@
     <link href="../assets/login/css/main.css" rel="stylesheet" type="text/css">
     <!--===============================================================================================-->
 </head>
-
+<!--       https://avatars.dicebear.com/api/bottts/as.svg?background=%230000ff         -->
 <body>
     <div class="limiter">
         <div class="container-login100 center-div">
-            <div class="wrap-login100">
+            <div class="wrap-login100" style="padding-top: 40px;">
                 <div class="login100-pic js-tilt" data-tilt style="margin-top: 1.5rem;">
                     <img alt="IMG" src="../assets/images/login.svg">
-                    <!--       https://avatars.dicebear.com/api/bottts/as.svg?background=%230000ff         -->
+                    
                 </div>
 
                 <form action="../php/login.php" class="login100-form validate-form" method="post">
                     <span class="login100-form-title">
 						Member Login
 					</span>
-                    
+                    <?php
+                    if ((isset($_GET["error"])) && ($_GET["error"]) === "invalidUsermail") {
+                        echo '<div class="alert alert-danger">Invalid Usermail</div>';
+                    }
+                    elseif ((isset($_GET["error"])) && ($_GET["error"]) === "invalidPassword") {
+                        echo '<div class="alert alert-danger">Invalid Password</div>';
+                    }
+                    ?>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                         <input class="input100" name="email" placeholder="Email" required type="text">
                         <span class="focus-input100"></span>
@@ -69,8 +88,8 @@
                     </a>
                     </div>
 
-                    <div class="text-center p-t-136">
-                        <a class="txt2 blue" href="signup.html">
+                    <div class="text-center p-t-20">
+                        <a class="txt2 blue" href="signupa.php">
                             Create your Account
                             <i aria-hidden="true" class="fa fa-long-arrow-right m-l-5"></i>
                         </a>

@@ -61,7 +61,7 @@
                     <div class="container-login100-form-btn">
                         <?php
                       if (isset($_SESSION['cvc'])) {
-                        echo "<div class='login10-form'>CVC: ".$_SESSION['cvc']."</div>";
+                        echo "<div class='login10-form'>CVC: ******* </div>";
                       }
                     ?>
                     </div>

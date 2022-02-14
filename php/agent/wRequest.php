@@ -27,11 +27,11 @@
     <link rel="stylesheet" href="/money-transfert/php/admin/dash/dist/css/adminlte.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-    //jQuery script to refresh table after every 5 seconds
+    //jQuery script to refresh table after every 1 second
     $(document).ready(function() {
         setInterval(function() {
             $('#wrequest').load('/money-transfert/php/agent/wRequestquery.php');
-        }, 5000);
+        }, 1000);
     });
     </script>
 </head>
@@ -153,7 +153,8 @@
 
                                         </tbody>
                                         <?php
-                                            //Modals for all customers who will eventually send withdrawal requests to the agent. It would be great if I created the modal a the time of the request but I could not find a way to do it. So I am reserving these modals.
+                                            // Modals for all customers who will eventually send withdrawal requests to the agent. 
+                                            // It would be great if I created the modal a the time of the request but I could not find a way to do it. So I am reserving these modals.
                                             $sql = "SELECT * FROM customer";
                                             $result = mysqli_query($db, $sql);
                                             $resultCheck = mysqli_num_rows($result);
@@ -185,6 +186,7 @@
                                                                         }
                                                                     ?>
 
+                                                                    <!-- Modal form to accept customer withdrawal request -->
                                                                     <form action="./wrequestlogic.php" method="post">
                                                                         <div class="mb-3">
                                                                             <label class="form-label" for="accNum">Account number</label>
@@ -229,7 +231,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2021 <a href="/index.html">BornaSend</a>.</strong>
+            <strong>2021 <a href="/index.html">BornaSend</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0

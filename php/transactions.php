@@ -20,7 +20,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">TransactionID</th>
                         <th scope="col">Sender</th>
                         <th scope="col">Receiver</th>
                         <th scope="col">Amount</th>
@@ -31,9 +31,12 @@
                   <?php
                     $sender = $_SESSION["id"];
                     $sql = "SELECT * FROM transactions WHERE Sender = '$sender' OR Receiver = '$sender'";
+                    $sql2 = "SELECT CONCAT(`prefix`, `#`) AS 'transactionId' FROM transactions WHERE Sender = '$sender' OR Receiver = '$sender';";
                     $result = mysqli_query($db, $sql);
+                    $result2 = mysqli_query($db, $sql2);
 
-                    while($row = mysqli_fetch_assoc($result)) {
+                    while(($row = mysqli_fetch_assoc($result)) && ($transactionId = mysqli_fetch_assoc($result2))) {
+                      //replacing account number to display my account 
                       if ($row['Sender'] === $sender) {
                         $row['Sender'] = 'My account';
                       }
@@ -41,7 +44,8 @@
                         $row['Receiver'] = 'My account';
                       }
                       echo "<tr>";
-                      echo "<td>".$row['#']."</td>";
+                      //Making the transaction IDs more elaborate with alphanumeric characters
+                      echo "<td>".$transactionId['transactionId']."</td>";
                       echo "<td>".$row['Sender']."</td>";
                       echo "<td>".$row['Receiver']."</td>";
                       echo "<td>".$row['Amount']."</td>";

@@ -101,7 +101,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="container" style="max-width: 400px;">
-                        <h3 class="wrapper">Agent sign up form</h3>
+                        <h3 class="wrapper">Fund User Account</h3>
                         <?php
                             if ((isset($_GET["deposit"])) && ($_GET["deposit"]) === "accnumnotcorrect") {
                                 echo '<div class="alert alert-danger">Account number does not match</div>';
@@ -159,8 +159,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2021 <a href="/index.html">BornaSend</a>.</strong>
-            All rights reserved.
+            <strong>2021 <a href="/index.html">BornaSend</a>.</strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
             </div>

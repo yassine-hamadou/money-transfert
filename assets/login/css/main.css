@@ -16,6 +16,15 @@
     src: url('../fonts/poppins/Poppins-Medium.ttf');
 }
 
+body {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #0000ff);
+    background: -o-linear-gradient(-135deg, #c850c0, #0000ff);
+    background: -moz-linear-gradient(-135deg, #c850c0, #0000ff);
+    background: linear-gradient(-135deg, #c850c0, #0000ff);
+}
+
 .login10-form {
     font-family: Montserrat-Bold;
     font-size: 15px;
@@ -59,6 +68,8 @@ body,
 html {
     height: 100%;
     font-family: Poppins-Regular, sans-serif;
+    padding: 0px;
+    margin: 0px;
 }
 
 
@@ -244,12 +255,8 @@ iframe {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15%;
-    background: #0000ff;
-    background: -webkit-linear-gradient(-135deg, #c850c0, #0000ff);
-    background: -o-linear-gradient(-135deg, #c850c0, #0000ff);
-    background: -moz-linear-gradient(-135deg, #c850c0, #0000ff);
-    background: linear-gradient(-135deg, #c850c0, #0000ff);
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 
@@ -273,7 +280,7 @@ iframe {
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    height: 90vh;
+    height: auto;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -281,7 +288,7 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 177px 130px 33px 95px;
+    padding: 50px 130px 33px 95px;
 }
 
 .blue:hover {
@@ -486,7 +493,7 @@ iframe {
 
 @media (max-width: 992px) {
     .wrap-login100 {
-        padding: 177px 90px 33px 85px;
+        padding: 50px 90px 33px 90px;
     }
     .login100-pic {
         width: 35%;
@@ -498,7 +505,7 @@ iframe {
 
 @media (max-width: 768px) {
     .wrap-login100 {
-        padding: 100px 80px 33px 80px;
+        padding: 50px 80px 33px 80px;
     }
     .login100-pic {
         display: none;
@@ -510,7 +517,7 @@ iframe {
 
 @media (max-width: 576px) {
     .wrap-login100 {
-        padding: 100px 15px 33px 15px;
+        padding: 50px 15px 33px 15px;
     }
 }
 
